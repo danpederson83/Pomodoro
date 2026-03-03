@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomodoro Timer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <section class="timer-card" aria-label="Pomodoro timer">
+      <p id="phaseLabel" class="phase-label">Work</p>
+      <div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar-fill"></div>
+      </div>
+      <div class="time-display" aria-live="polite">
+        <span id="timeMinutes" class="time-min">25</span>
+        <span class="time-colon">:</span>
+        <span id="timeSeconds" class="time-sec">00</span>
+      </div>
+
+      <div id="pomodoroDots" class="pomodoro-dots" aria-label="Cycle progress">
+        <span class="period square" aria-hidden="true"></span>
+        <span class="period dot" aria-hidden="true"></span>
+        <span class="period square" aria-hidden="true"></span>
+        <span class="period dot" aria-hidden="true"></span>
+        <span class="period square" aria-hidden="true"></span>
+        <span class="period dot" aria-hidden="true"></span>
+        <span class="period square" aria-hidden="true"></span>
+        <span class="period dot" aria-hidden="true"></span>
+      </div>
+
+      <div class="controls">
+        <button id="startPauseBtn" type="button">Start</button>
+        <button id="resetBtn" type="button">Reset</button>
+        <button id="nextBtn" type="button" class="icon-btn" title="Next phase" aria-label="Next phase">⏭</button>
+      </div>
+
+      <section class="tasks" aria-label="Focus list">
+        <h2>Focus list</h2>
+        <form id="taskForm" class="task-form">
+          <input id="taskInput" type="text" placeholder="Add a task…" maxlength="200" autocomplete="off">
+          <button id="addTaskBtn" type="submit">Add</button>
+        </form>
+        <ul id="taskList" class="task-list"></ul>
+      </section>
+
+      <section class="settings collapsed" aria-label="Timer settings">
+        <button type="button" class="settings-toggle" id="settingsToggle" aria-expanded="false" aria-controls="settingsContent">
+          <span class="settings-toggle-text">Settings</span>
+          <span class="settings-chevron" aria-hidden="true">▼</span>
+        </button>
+        <div id="settingsContent" class="settings-content">
+        <div class="settings-grid">
+          <label for="workMinutesInput">Work (minutes)</label>
+          <input id="workMinutesInput" type="number" min="1" max="120" step="1" value="25">
+
+          <label for="shortBreakMinutesInput">Short break (minutes)</label>
+          <input id="shortBreakMinutesInput" type="number" min="1" max="60" step="1" value="5">
+
+          <label for="longBreakMinutesInput">Long break (minutes)</label>
+          <input id="longBreakMinutesInput" type="number" min="1" max="90" step="1" value="15">
+        </div>
+
+        <label class="toggle-row" for="autoAdvanceInput">
+          <input id="autoAdvanceInput" type="checkbox" checked>
+          Auto-advance sessions
+        </label>
+
+        <button id="saveSettingsBtn" class="save-settings-btn" type="button">Save Settings</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
