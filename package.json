@@ -1,0 +1,10 @@
+{
+  "name": "pomodoro",
+  "private": true,
+  "scripts": {
+    "test:center": "node test-timer-center.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.0"
+  }
+}

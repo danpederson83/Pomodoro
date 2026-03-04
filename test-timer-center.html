@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timer center test</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { padding: 2rem; }
+    .result { margin-top: 1rem; font-family: monospace; font-size: 14px; }
+    .result.pass { color: green; }
+    .result.fail { color: red; }
+  </style>
+</head>
+<body>
+  <p>Timer display (colon should be exactly centered):</p>
+  <div style="width: min(22rem, 100%); margin: 0 auto;">
+  <div class="time-display" aria-live="polite">
+    <span id="timeMinutes" class="time-min">25</span>
+    <span class="time-colon">:</span>
+    <span id="timeSeconds" class="time-sec">00</span>
+  </div>
+  </div>
+  <div id="result" class="result"></div>
+
+  <script>
+    function checkColonCenter() {
+      const container = document.querySelector('.time-display');
+      const colon = document.querySelector('.time-colon');
+      if (!container || !colon) {
+        document.getElementById('result').textContent = 'Error: elements not found';
+        return;
+      }
+      const cr = container.getBoundingClientRect();
+      const colr = colon.getBoundingClientRect();
+      const containerCenterX = cr.left + cr.width / 2;
+      const colonCenterX = colr.left + colr.width / 2;
+      const offsetPx = Math.abs(colonCenterX - containerCenterX);
+      const tolerancePx = 1;
+      const pass = offsetPx <= tolerancePx;
+      const el = document.getElementById('result');
+      el.textContent = pass
+        ? `PASS: Colon is centered (offset ${offsetPx.toFixed(2)}px)`
+        : `FAIL: Colon offset ${offsetPx.toFixed(2)}px from center (max ${tolerancePx}px)`;
+      el.className = 'result ' + (pass ? 'pass' : 'fail');
+    }
+    window.addEventListener('load', () => setTimeout(checkColonCenter, 50));
+  </script>
+</body>
+</html>

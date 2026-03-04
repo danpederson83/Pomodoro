@@ -118,12 +118,9 @@ body.phase-long-break .progress-bar-fill {
   background: var(--long-break);
 }
 
+/* Colon is pinned to exact center with position; minutes/seconds sit on either side */
 .time-display {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  justify-items: center;
-  gap: 0;
+  position: relative;
   margin: 0.5rem 0 1.25rem;
   font-size: clamp(3.25rem, 16vw, 4.5rem);
   font-weight: 700;
@@ -132,27 +129,29 @@ body.phase-long-break .progress-bar-fill {
   letter-spacing: -0.02em;
   color: var(--text);
   width: 100%;
-  max-width: 5.5em;
-  margin-left: auto;
-  margin-right: auto;
+  height: 1.1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .time-min {
-  grid-column: 1;
-  justify-self: end;
-  min-width: 3ch;
+  position: absolute;
+  right: 50%;
+  margin-right: 0.15em;
   text-align: right;
 }
 
 .time-colon {
-  grid-column: 2;
-  padding: 0 0.02em;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .time-sec {
-  grid-column: 3;
-  justify-self: start;
-  min-width: 2ch;
+  position: absolute;
+  left: 50%;
+  margin-left: 0.15em;
   text-align: left;
 }
 

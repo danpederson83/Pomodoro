@@ -31,7 +31,6 @@ const dom = {
   timeSeconds: document.getElementById("timeSeconds"),
   periods: Array.from(document.querySelectorAll("#pomodoroDots .period")),
   startPauseBtn: document.getElementById("startPauseBtn"),
-  resetBtn: document.getElementById("resetBtn"),
   nextBtn: document.getElementById("nextBtn"),
   workMinutesInput: document.getElementById("workMinutesInput"),
   shortBreakMinutesInput: document.getElementById("shortBreakMinutesInput"),
@@ -63,7 +62,6 @@ renderTasks();
 render();
 
 dom.startPauseBtn.addEventListener("click", onStartPauseClick);
-dom.resetBtn.addEventListener("click", onResetClick);
 dom.nextBtn.addEventListener("click", onNextClick);
 dom.saveSettingsBtn.addEventListener("click", onSaveSettingsClick);
 dom.settingsToggle.addEventListener("click", onSettingsToggleClick);
@@ -78,14 +76,6 @@ function onStartPauseClick() {
     return;
   }
   pauseTimer();
-}
-
-function onResetClick() {
-  pauseTimer();
-  state.currentPhase = "work";
-  state.secondsRemaining = getPhaseDurationSeconds("work");
-  state.completedWorkSessions = 0;
-  render();
 }
 
 function onSettingsToggleClick() {
