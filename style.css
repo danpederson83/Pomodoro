@@ -32,12 +32,24 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+  overflow: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
   font-family: "DM Sans", system-ui, -apple-system, sans-serif;
   background: var(--bg);
   color: var(--text);
-  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.4s ease;
 }
@@ -56,10 +68,12 @@ body.timer-running.phase-long-break {
 }
 
 .app {
-  min-height: 100vh;
+  height: 100%;
+  min-height: 100%;
   display: grid;
   place-items: center;
   padding: 2rem 1.25rem;
+  overflow: hidden;
 }
 
 .timer-card {
